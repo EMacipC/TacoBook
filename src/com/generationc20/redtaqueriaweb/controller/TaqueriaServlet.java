@@ -38,48 +38,82 @@ public class TaqueriaServlet extends HttpServlet {
 	}
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
-		Taqueria taqueria=null;
-		Connection puenteConn=null;
-		DatabaseManager chalanDB=null;
-		
+		 
+		String usuario= null;
+		String vPass= null;
+		String pass=null;
+		String nombre= null;
+		String ubicacion=null;
 		//Optencion de datos
-		String nombre= req.getParameter("txtNombre");
+		usuario=req.getParameter("txtUsusario");
+		vPass=req.getParameter("txtVContrasena");
+		pass=req.getParameter("txtContrasena");
+		nombre= req.getParameter("txtNombre");
 		int popularidad= Integer.parseInt(req.getParameter("txtPopularidad"));
 		int Limpieza= Integer.parseInt(req.getParameter("txtLimpieza"));
-		String ubicacion= req.getParameter("txtUbicacion");
+		ubicacion= req.getParameter("txtUbicacion");
 		int olor= Integer.parseInt(req.getParameter("txtOlor"));
 		
-		//Moldear Datos
-		taqueria = new Taqueria();
+		if(
+				pass.equals(vPass)&& 
+				usuario != null&&
+				pass!= null&&
+				nombre != null&&
+				ubicacion!= null) {
+			
+			Taqueria taqueria=null;
+			Connection puenteConn=null;
+			DatabaseManager chalanDB=null;
 		
-		taqueria.setNombre(nombre);
-		taqueria.setPopularidad(popularidad);
-		taqueria.setNivelLimpieza(Limpieza);
-		taqueria.setUbicacion(ubicacion);
-		taqueria.setOlor(olor);
+			//Moldear Datos
+			taqueria = new Taqueria();
+			
+			taqueria.setUsuario(usuario);
+			taqueria.setvPass(vPass);
+			taqueria.setPass(pass);
+			taqueria.setNombre(nombre);
+			taqueria.setPopularidad(popularidad);
+			taqueria.setNivelLimpieza(Limpieza);
+			taqueria.setUbicacion(ubicacion);
+			taqueria.setOlor(olor);
 		
-		//Procesar Datos(Agregarlo a base de datos)
-		 puenteConn= DatabaseConection.getConnection();
-		 chalanDB=new DatabaseManager(puenteConn);
-		 chalanDB.incertarTaqueria(taqueria);
-		 DatabaseConection.colseConnection(puenteConn);
-		 
-		 resp.setContentType("text/html");
-		 resp.setStatus(HttpServletResponse.SC_CREATED);
-		 
-		 PrintWriter salida=resp.getWriter();
-		 
-		 salida.write("<!DOCTYPE html>"
-					+ "<html>"
-					+ "<head>"
-					+ "<title>Saludame</title>"
-					+ "</head>"
-					+ "<body>"
-					+ "<h2>Se Creo Con Exito</h2>"
-					+ "</body>"
-					+ "</html>");
-		
+			//Procesar Datos(Agregarlo a base de datos)
+			puenteConn= DatabaseConection.getConnection();
+			chalanDB=new DatabaseManager(puenteConn);
+			chalanDB.incertarTaqueria(taqueria);
+			DatabaseConection.colseConnection(puenteConn);
+			
+			resp.setContentType("text/html");
+			resp.setStatus(HttpServletResponse.SC_CREATED);
+			
+			PrintWriter salida=resp.getWriter();
+			
+			salida.write("<!DOCTYPE html>"
+						+ "<html>"
+						+ "<head>"
+						+ "<title>Creado</title>"
+						+ "</head>"
+						+ "<body>"
+						+ "<h2>Se Creo Con Exito</h2>"
+						+ "</body>"
+						+ "</html>");
+		}else {
+			resp.setContentType("text/html");
+			resp.setStatus(HttpServletResponse.SC_CREATED);
+			
+			PrintWriter salida=resp.getWriter();
+			
+			salida.write("<!DOCTYPE html>"
+						+ "<html>"
+						+ "<head>"
+						+ "<title>Error</title>"
+						+ "</head>"
+						+ "<body>"
+						+ "<h2>Las contraseñas no coinciden</h2>"
+						+ "<a href='ftaqueria.html'>intentar de nuevo<a>"
+						+ "</body>"
+						+ "</html>");
+		}
 	}
 
 }

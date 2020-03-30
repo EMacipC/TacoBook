@@ -10,9 +10,12 @@ public class Taqueria {
 	private String ubicacion;
 	private int olor;
 	private Date fechaCreacion;
+	private String usuario;
+	private String vPass;
+	private String pass;
 	
 	public Taqueria() {}
-	public Taqueria(int id, String nombre, int popularidad,int nivelLimpieza,String ubicacion, int olor,Date fechaCreacion) {
+	public Taqueria(int id, String nombre, int popularidad,int nivelLimpieza,String ubicacion, int olor,Date fechaCreacion, String usuario, String vPass,String pass) {
 		this.id=id;
 		this.nombre=nombre;
 		this.popularidad=popularidad;
@@ -20,6 +23,29 @@ public class Taqueria {
 		this.ubicacion=ubicacion;
 		this.olor=olor;
 		this.fechaCreacion=fechaCreacion;
+		this.usuario=usuario;
+		this.vPass=vPass;
+		this.pass=pass;
+		
+	}
+	
+	public String getUsuario() {
+		return usuario;
+	}
+	public void setUsuario(String usuario) {
+		this.usuario = usuario;
+	}
+	public String getvPass() {
+		return vPass;
+	}
+	public void setvPass(String vPass) {
+		this.vPass = vPass;
+	}
+	public String getPass() {
+		return pass;
+	}
+	public void setPass(String pass) {
+		this.pass = pass;
 	}
 	public int getId() {
 		return id;

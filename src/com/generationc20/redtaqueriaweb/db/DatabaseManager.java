@@ -20,7 +20,7 @@ public class DatabaseManager {
 	
 	public void incertarTaqueria(Taqueria taqueria) {
 		
-		String queryInsert="insert into taqueria(nombre,popularidad,nivelLimpieza,ubicacion,olor) values(?,?,?,?,?)";
+		String queryInsert="insert into taqueria(nombre,popularidad,nivelLimpieza,ubicacion,olor,usuario,contrasena) values(?,?,?,?,?,?,?)";
 		
 		int result=-1;
 		PreparedStatement chalan=null;
@@ -31,6 +31,8 @@ public class DatabaseManager {
 			chalan.setInt(3, taqueria.getNivelLimpieza());
 			chalan.setString(4, taqueria.getUbicacion());
 			chalan.setInt(5, taqueria.getOlor());
+			chalan.setString(6, taqueria.getUsuario());
+			chalan.setString(7, taqueria.getPass());
 			
 			result=chalan.executeUpdate();
 			if(result>0) {
