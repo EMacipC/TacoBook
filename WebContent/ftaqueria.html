@@ -11,19 +11,19 @@
 	<form action="taqueria" method="post">
 		<div>
 		<label>Nombre</label>
-		<input type="text" name="txtNombre"></input>
+		<input type="text" required name="txtNombre" class="nulos"></input>
 		</div>
 		<div>
 		<label>Ususraio</label>
-		<input type="text" name="txtUsusario"></input>
+		<input type="text"  required name="txtUsusario"class="nulos"></input>
 		</div>
 		<div>
 		<label>Contraseña</label>
-		<input type="password" name="txtContrasena"></input>
+		<input type="password" required name="txtContrasena" class="nulos"></input>
 		</div>
 		<div>
 		<label>Repite Contraseña</label>
-		<input type="password" name="txtVContrasena"></input>
+		<input type="password" required name="txtVContrasena" class="nulos"></input>
 		</div>
 		<div>
 		<label>Popularidad</label>
@@ -47,7 +47,7 @@
 		</div>
 		<div>
 		<label>Ubicacion</label>
-		<input type="text" id="txtUbicacion" name="txtUbicacion"></input>
+		<input type="text" id="txtUbicacion" required name="txtUbicacion" class="nulos"></input>
 		</div>
 		<div>
 		<label>Olor</label>
@@ -59,10 +59,11 @@
 			<option value="5">Delicioso</option>
 		</select>
 		</div>
-		<input type="submit" value="Enviar"></input>
+		<input type="submit" value="Enviar" id="sub"></input>
 	</form>
 <div>
 	<a href="index.html">Regresar</a>
+	
 </div>
 </body>
 </html>

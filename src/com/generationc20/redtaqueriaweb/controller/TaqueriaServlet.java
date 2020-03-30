@@ -39,27 +39,18 @@ public class TaqueriaServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		 
-		String usuario= null;
-		String vPass= null;
-		String pass=null;
-		String nombre= null;
-		String ubicacion=null;
+		
 		//Optencion de datos
-		usuario=req.getParameter("txtUsusario");
-		vPass=req.getParameter("txtVContrasena");
-		pass=req.getParameter("txtContrasena");
-		nombre= req.getParameter("txtNombre");
+		String usuario=req.getParameter("txtUsusario");
+		String vPass=req.getParameter("txtVContrasena");
+		String pass=req.getParameter("txtContrasena");
+		String nombre= req.getParameter("txtNombre");
 		int popularidad= Integer.parseInt(req.getParameter("txtPopularidad"));
 		int Limpieza= Integer.parseInt(req.getParameter("txtLimpieza"));
-		ubicacion= req.getParameter("txtUbicacion");
+		String ubicacion= req.getParameter("txtUbicacion");
 		int olor= Integer.parseInt(req.getParameter("txtOlor"));
 		
-		if(
-				pass.equals(vPass)&& 
-				usuario != null&&
-				pass!= null&&
-				nombre != null&&
-				ubicacion!= null) {
+		if(pass.equals(vPass)&&nombre!= "" &&pass!=""&&usuario!=""&&ubicacion!="") {
 			
 			Taqueria taqueria=null;
 			Connection puenteConn=null;
