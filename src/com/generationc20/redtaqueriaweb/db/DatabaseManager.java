@@ -156,4 +156,34 @@ public class DatabaseManager {
 		}
 		
 	}
+	public boolean verificarUsuarioPass(String usu, String pass) {
+		 String query ="select usuario from taqueria";
+		 String queryC="select contrasena from taqueria";
+		 Statement chalan= null;
+		 Statement chalanC=null;
+		 ResultSet result=null;
+		 ResultSet resultC=null;
+		 try {
+			 chalan= connection.createStatement();
+			 result= chalan.executeQuery(query);
+			 while(result.next()) {
+				 String usuario= result.getString("usuario");
+				 if(usuario.equals(usu)) {
+					 chalanC=connection.createStatement();
+					 resultC=chalanC.executeQuery(queryC);
+					 while(resultC.next()) {
+						 String cont= resultC.getString("contrasena");
+						 if(cont.equals(pass)) {
+							 return true;
+						 }
+					 }
+					 
+				 }
+			 }
+			 
+		 }catch(SQLException e) {
+			 e.printStackTrace();
+		 }
+		 return false;
+	}
 }
